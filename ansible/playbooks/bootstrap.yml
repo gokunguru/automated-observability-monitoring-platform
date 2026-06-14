@@ -1,0 +1,21 @@
+---
+- name: Bootstrap Raspberry Pi
+  hosts: raspberry
+  become: true
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install base packages
+      apt:
+        name:
+          - git
+          - curl
+          - wget
+          - vim
+          - htop
+          - tree
+          - python3-pip
+        state: present
