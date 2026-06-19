@@ -1,0 +1,25 @@
+---
+- name: Create monitoring directory
+  file:
+    path: /opt/monitoring
+    state: directory
+
+- name: Create prometheus directory
+  file:
+    path: /opt/monitoring/prometheus
+    state: directory
+
+- name: Copy docker compose
+  copy:
+    src: ../../../../monitoring/docker-compose.yml
+    dest: /opt/monitoring/docker-compose.yml
+
+- name: Copy prometheus config
+  copy:
+    src: ../../../../monitoring/prometheus/prometheus.yml
+    dest: /opt/monitoring/prometheus/prometheus.yml
+
+- name: Start monitoring stack
+  shell: docker compose up -d
+  args:
+    chdir: /opt/monitoring

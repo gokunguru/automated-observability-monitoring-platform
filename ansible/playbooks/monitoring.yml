@@ -1,0 +1,7 @@
+---
+- name: Deploy Monitoring Stack
+  hosts: raspberry
+  become: true
+
+  roles:
+    - monitoring
